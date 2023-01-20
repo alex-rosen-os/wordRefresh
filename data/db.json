@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "title": "first post",
+      "body": "hello world",
+      "likes": 0,
+      "id": 1
+    },
+    {
+      "title": "second post",
+      "body": "goodbye world",
+      "likes": 0,
+      "id": 2
+    }
+  ]
+}
