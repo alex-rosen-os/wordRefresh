@@ -18,5 +18,8 @@
     "gulp-sass": "^5.1.0",
     "gulp-terser": "^2.1.0",
     "gulp-webp": "^4.0.1"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20"
   }
 }
