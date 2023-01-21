@@ -1,5 +1,7 @@
 # fakeUser
- 
-- currently an ongoing freestyle project (building it up as i go along)
+A Fake User Generator App.
+
+- currently an ongoing freestyle project
 - using json server as a database 
 - using faker.js to generate fake user data
+
