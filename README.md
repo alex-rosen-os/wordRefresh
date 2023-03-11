@@ -1,5 +1,5 @@
 
-A word Generator App.
+A Word Generator App.
 
 - currently an ongoing freestyle project
 - using json server as a database 
