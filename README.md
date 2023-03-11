@@ -1,7 +1,7 @@
-# fakeUser
-A Fake User Generator App.
+
+A word Generator App.
 
 - currently an ongoing freestyle project
 - using json server as a database 
-- using faker.js to generate fake user data
+- using faker.js to generate word data
 
