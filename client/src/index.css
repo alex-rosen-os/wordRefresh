@@ -1,0 +1,72 @@
+.App {
+  /* border: 1px solid rgb(247, 27, 27); */
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  min-width: 30em;
+}
+
+.wordBox {
+  background-color: rgb(208, 180, 145);
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  justify-content: center;
+}
+
+form > h2 {
+  display: flex;
+  color: rgb(255, 255, 255);
+  justify-content: center;
+  font-size: 180%;
+}
+
+.loginBox {
+  display: flex;
+  max-width: 50%;
+  flex-direction: column;
+  padding: 25%;
+  border: 10px solid rgb(215, 184, 145);
+  margin: 4%;
+  border-radius: 2%;
+}
+.loginBox > h1 {
+  display: flex;
+  color: rgb(158, 109, 50);
+  justify-content: center;
+}
+
+/* .words {
+  color: blueviolet;
+  padding: 50px;
+} */
+
+tbody {
+  /* display: flex; */
+  justify-content: center;
+  flex-direction: column;
+}
+
+tr,
+th,
+td {
+  border: 1px solid black;
+}
+
+tr {
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+.divButton {
+  display: flex;
+  justify-content: center;
+}

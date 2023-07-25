@@ -1,25 +1,19 @@
 {
-  "name": "jsonblog",
+  "name": "learning_app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "commonjs",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "npm run start --prefix client",
+    "server": "nodemon app.js --prefix server"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-imagemin": "^8.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-terser": "^2.1.0",
-    "gulp-webp": "^4.0.1"
-  },
   "dependencies": {
-    "nodemon": "^2.0.20"
+    "body-parser": "^1.20.2",
+    "jsonwebtoken": "^9.0.1",
+    "nodemon": "^3.0.1",
+    "react-router-dom": "^6.14.2",
+    "react-select": "^5.7.3"
   }
 }
