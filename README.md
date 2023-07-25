@@ -1,8 +1,5 @@
 A Word Generator App.
 
-Technologies used in this project :
-
-- json server as a database
-- faker.js to generate word data
-- webcomponents for reusable elements
-- the html drag & drop API
+- currently an ongoing freestyle project
+- using json server as a database
+- using faker.js to generate word data
