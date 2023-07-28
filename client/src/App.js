@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ function MyWords() {
     try {
       // const studentId = "0";
       const response = await axios.post(
-        `http://localhost:5000/students/hi`, //${studentId}`
+        `http://localhost:5000/words/`,//${studentId}`,
         {
           words: [],
         }
@@ -99,56 +99,60 @@ function LogIn() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   // const history = useHistory();
-  // const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState([]);
 
   const handleLogin = async (ev) => {
     ev.preventDefault();
     const username = ev.target[0].value;
     setUserName(username);
     try {
-      const response = await axios.post(`/login`, { username, password });
+      const response = await axios.post(`http://localhost:5000/users/login`, { username, password });
       if (response.status === 200) {
         const data = response.data;
+        console.log(data,"data")
         localStorage.setItem("token", data.token);
         // history.push("/protected");
-
-        console.log("data: ", data);
+        const myStudents = await axios.get(
+          `http://localhost:5000/users/students/${data.id}`
+        );
+        // console.log("got students ", myStudents.data);
+        console.log("data: ", myStudents);
       } else {
       }
     } catch (error) {}
   };
 
-  // const handleWords = async (event) => {
-  //   event.preventDefault();
-  //   let username = event.target[0].value;
-  //   console.log("username", username);
-  //   setUserName(username);
+  const handleWords = async (event) => {
+    event.preventDefault();
+    let username = event.target[0].value;
+    console.log("username", username);
+    setUserName(username);
 
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:5000/users/teachers?firstname=${username}`
-  //       // `http://localhost:5000/users/students/all`
-  //     );
-  //     setUserName(response.data.username);
-  //     console.log("teacher app", response.data);
-  //     // const fetchData = async () => {
-  //     const myStudents = await axios.get(
-  //       `http://localhost:5000/users/students/${response.data.studentId}`
-  //     );
-  //     console.log("got students ", myStudents.data);
-  //     // return response.data
-  //     // }
-  //     // if (username === 'leo') {
-  //     // let myStudents = fetchData()
-  //     setStudents(myStudents.data);
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/users/teachers?firstname=${username}`
+        // `http://localhost:5000/users/students/all`
+      );
+      setUserName(response.data.username);
+      console.log("teacher app", response.data);
+      // const fetchData = async () => {
+      const myStudents = await axios.get(
+        `http://localhost:5000/users/students/${response.data.studentId}`
+      );
+      console.log("got students ", myStudents.data);
+      // return response.data
+      // }
+      // if (username === 'leo') {
+      // let myStudents = fetchData()
+      setStudents(myStudents.data);
 
-  //     // }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {}, [username, students]);
+  useEffect(() => {}, [username, students]);
 
   return (
     <div className="loginBox">

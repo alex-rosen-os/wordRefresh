@@ -19,8 +19,4 @@ studentRouter.get("/students/:studentId", async (req, res) => {
 
 });
 
-// studentRouter.post("/student", (req, res) => {
-//   res.send("<h1>this is a student</h1>");
-// });
-
 export default studentRouter;
