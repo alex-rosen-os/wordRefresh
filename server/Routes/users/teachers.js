@@ -25,7 +25,7 @@ teacherRouter.get("/teachers", async (req, res) => {
 teacherRouter.post("/login",async (req, res) => {
   let username = req.body.username
   let password = req.body.password
-  console.log("u", username, password)
+  console.log("username: ", username, password)
   let [rows,field] = await promisePool.query(
     "SELECT * FROM teachers WHERE username = ? AND pass = ?",
     [username, password])
