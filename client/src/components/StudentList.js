@@ -1,32 +1,44 @@
-// import { useState } from "react";
-// import axios from "axios";
+import { useEffect } from "react";
+import axios from "axios";
 
-// function StudentList() {
-//   const [teacherId, setTeacherId] = useState([]);
-//   const [username, setUsername] = useState([]);
+function StudentList(props) {
+  useEffect(
+    (props) => {
+      console.log("use effect", props, );
+      if (props.user && !props.students.length) {
+        const handleStudentList = async () => {
+          if (props.user?.id) {
+            console.log("props", props);
+            const response = await axios.get(
+              `http://localhost:5000/users/students/${props.studentId}`
+            );
+            console.log("students", response.data);
+            props.setStudents(response.data);
+          }
+        };
+        handleStudentList();
+      }
+    },
+    [props.user, props.students, props.setStudents]
+  );
 
-//   const handleStudentList = async () => {
-//     const response = await axios.get(
-//       `http://localhost:5000/users/students/${teacherId}`
-//     );
-//     return setTeacherId(response);
+  return (
+    <div className="studentList">
+      student list :
+      <div className={"students"}>
+        {Array.isArray(props.students) && props.students.length > 0 ? (
+          props.students.map((student) => (
+            <div key={student.id}>
+              <input type={"checkbox"} />
+              {student.username}
+            </div>
+          ))
+        ) : (
+          <p>no students found</p>
+        )}
+      </div>
+    </div>
+  );
+}
 
-//     const username = ev.target[0].value;
-//     setUsername(username);
-//   };
-
-//   // useEffect(()=> {
-
-//   // },[])
-
-//   return (
-//     <div>
-//       student list :{" "}
-//       {teacherId.map((teacher) => {
-//         teacher.username;
-//       })}{" "}
-//     </div>
-//   );
-// }
-
-// export default StudentList;
+export default StudentList;

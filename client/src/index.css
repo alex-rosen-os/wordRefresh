@@ -70,3 +70,14 @@ form {
   display: flex;
   justify-content: center;
 }
+.studentList {
+  display: flex;
+}
+.students {
+
+  background-color: rgb(158, 109, 50);
+  width: 500px;
+  height: 300px;
+  color:azure;
+  font-size: 15px;
+}
