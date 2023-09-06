@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import StudentList from "./StudentList";
 import { Navigate } from "react-router-dom";
 
 function LogIn({
@@ -11,9 +10,10 @@ function LogIn({
   setStudent,
   setUserName,
   setPassword,
+  user,
+  studentId
 }) {
   const [submited, setSubmited] = useState(false);
-
   const handleLogin = async (ev) => {
     ev.preventDefault();
     const username = ev.target[0].value;
@@ -32,7 +32,7 @@ function LogIn({
     } catch (error) {}
   };
 
-  useEffect(() => {}, [this.props.user]);
+  useEffect(() => {}, [user]);
 
   return (
     <>
@@ -62,7 +62,7 @@ function LogIn({
             </form>
           </div>
         ) : (
-          <Navigate to="/students" replace={true} state={{ user: this.props.user }} />
+          <Navigate to="/students" replace={true} state={{ user: user }} />
         )
         // (
         //   <StudentList students={students} setStudent={setStudent}  studentId={username}/>

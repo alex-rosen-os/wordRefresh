@@ -29,6 +29,8 @@ export default function App() {
               setId={setId}
               setUser={setUser}
              user={user}
+             studentId={studentId}
+             setStudentId={setStudentId}
             />
           }
         />

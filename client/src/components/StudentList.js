@@ -1,33 +1,30 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-function StudentList(props) {
-  useEffect(
-    (props) => {
-      console.log("use effect", props, );
-      if (props.user && !props.students.length) {
+function StudentList({user, setStudents, students}) {
+  useEffect(() => {
+      if (user && !students.length) {
         const handleStudentList = async () => {
-          if (props.user?.id) {
-            console.log("props", props);
+          if (user?.id) {
             const response = await axios.get(
-              `http://localhost:5000/users/students/${props.studentId}`
+              `http://localhost:5000/users/students/${user}`
             );
             console.log("students", response.data);
-            props.setStudents(response.data);
-          }
+           setStudents(response.data);
+          } 
         };
         handleStudentList();
       }
     },
-    [props.user, props.students, props.setStudents]
+    [user]
   );
 
   return (
     <div className="studentList">
       student list :
       <div className={"students"}>
-        {Array.isArray(props.students) && props.students.length > 0 ? (
-          props.students.map((student) => (
+        {Array.isArray(students) && students.length > 0 ? (
+          students.map((student) => (
             <div key={student.id}>
               <input type={"checkbox"} />
               {student.username}
@@ -37,6 +34,7 @@ function StudentList(props) {
           <p>no students found</p>
         )}
       </div>
+      <button type="submit">submit</button>
     </div>
   );
 }
