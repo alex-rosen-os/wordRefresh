@@ -5,14 +5,13 @@ import { Route, Routes } from "react-router-dom";
 import MyWords from "./components/MyWords.js";
 import LogIn from "./components/LogIn.js";
 import StudentList from "./components/StudentList.js";
+import TeacherPage from "./components/TeacherPage.js";
 
 export default function App() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [students, setStudents] = useState([]);
-  const [user, setUser] = useState({});
+  const [data, setData] = useState({});
   const [id, setId] = useState("");
-  const [studentId, setStudentId] = useState([]);
   return (
     <div className="App">
       <Routes>
@@ -23,30 +22,18 @@ export default function App() {
               username={username}
               password={password}
               id={id}
-              students={students}
               setUserName={setUserName}
               setPassword={setPassword}
               setId={setId}
-              setUser={setUser}
-             user={user}
-             studentId={studentId}
-             setStudentId={setStudentId}
+              setData={setData}
+              data={data}
             />
           }
         />
+        <Route path="/students" element={<StudentList data={data} />} />
         <Route
-          path="/students"
-          element={
-            <StudentList
-              id={id}
-              students={students}
-              user={user}
-              username={username}
-              setStudents={setStudents}
-              studentId={studentId}
-              setStudentId = {setStudentId}
-            />
-          }
+          path="/teacherPage"
+          element={<TeacherPage data={data}></TeacherPage>}
         />
         <Route path="/words" element={<MyWords />} />
       </Routes>

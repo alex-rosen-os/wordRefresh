@@ -6,14 +6,14 @@ function LogIn({
   username,
   password,
   students,
-  setUser,
+  setData,
   setStudent,
   setUserName,
   setPassword,
-  user,
-  studentId
+  data
 }) {
   const [submited, setSubmited] = useState(false);
+  
   const handleLogin = async (ev) => {
     ev.preventDefault();
     const username = ev.target[0].value;
@@ -24,15 +24,18 @@ function LogIn({
         password,
       });
       if (response.status === 200) {
+        console.log("% entered")
         const data = response.data;
+        console.log("login response in front", data)
         localStorage.setItem("token", data.token);
-        setUser(data);
+        setData(data);
         setSubmited(true);
+        console.log("#",data)
       }
     } catch (error) {}
   };
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {}, [data]);
 
   return (
     <>
@@ -62,10 +65,12 @@ function LogIn({
             </form>
           </div>
         ) : (
-          <Navigate to="/students" replace={true} state={{ user: user }} />
+          // <Navigate to="/students" replace={true} state={{ user: user }} />
+          <Navigate to="/teacherPage" data={{ data  }} />
         )
         // (
-        //   <StudentList students={students} setStudent={setStudent}  studentId={username}/>
+        //   <StudentList students={students} 
+        // setStudent={setStudent}  studentId={username}/>
         // )
       }
     </>

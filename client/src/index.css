@@ -12,7 +12,7 @@
 }
 
 .wordBox {
-  background-color: rgb(208, 180, 145);
+  background-color: rgb(105, 165, 255);
   display: flex;
   flex-direction: column;
   padding: 10%;
@@ -31,13 +31,13 @@ form > h2 {
   max-width: 50%;
   flex-direction: column;
   padding: 25%;
-  border: 10px solid rgb(215, 184, 145);
+  border: 10px solid rgb(65, 144, 255);
   margin: 4%;
   border-radius: 2%;
 }
 .loginBox > h1 {
   display: flex;
-  color: rgb(158, 109, 50);
+  color: rgb(73, 255, 140);
   justify-content: center;
 }
 
@@ -74,10 +74,9 @@ form {
   display: flex;
 }
 .students {
-
-  background-color: rgb(158, 109, 50);
+  background-color: rgb(88, 228, 247);
   width: 500px;
   height: 300px;
-  color:azure;
+  color: azure;
   font-size: 15px;
 }

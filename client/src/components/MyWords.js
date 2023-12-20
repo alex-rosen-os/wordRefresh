@@ -1,25 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
-function MyWords() {
-  const [words, setWords] = useState([]);
+function MyWords({ students }) {
   const [value, setValue] = useState("");
-
+  const [checked, setChecked] = useState([]);
+  const [words, setWords] = useState([]);
+  //new Array(words.length).fill(false)
+  console.log("students", students);
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
-
-  const handlePost = async (event) => {
-    try {
-      const response = await axios.post(`http://localhost:5000/words/`, {
-        words: [],
-      });
-      console.log("data", response.data);
-      setWords(response.data);
-    } catch (error) {
-      console.log("1", error);
-    }
-    console.log("handling posts");
   };
 
   const fetchData = async (event) => {
@@ -43,39 +32,88 @@ function MyWords() {
     }
   };
 
+  const handleCheckBox = (word, wordType) => async (event) => {
+    console.log("students", students.length);
+    // const checkedStatus = event.target.value;
+    const isChecked = event.target.checked;
+    let updatedChecked;
+    console.log(isChecked);
+
+    if (isChecked > 0) {
+
+        updatedChecked = [
+          ...checked,
+          {
+            word,
+            wordType,
+            userId: students[0].id,
+          },
+        ];
+        console.log("checked:", updatedChecked);
+      
+    } else {
+      updatedChecked = checked.filter((selectedWord) => selectedWord !== word);
+      console.log("unchecked: ", updatedChecked);
+    }
+    setChecked(updatedChecked);
+  };
+
+  const handlePost = async () => {
+    if (words.length > 0) {
+      try {
+        const response = await axios.post(
+          `http://localhost:5000/words/checked`,
+          { data: checked }
+        );
+        console.log("checked", checked);
+        setWords(response.data);
+      } catch (error) {
+        console.error("error:", error);
+      }
+    }
+  };
+
   return (
-    <div className="wordBox">
-      <form onSubmit={handleSubmit}>
-        <h2>Word Refresh</h2>
-        <input type="text" list="getWords"></input>
-        <datalist id="getWords">
-          <option value="verb" />
-          <option value="noun" />
-        </datalist>
-        <button onClick={fetchData}>Get </button>
-      </form>
-      <tbody>
-        <tr>
-          <th>word type</th>
-          <th>word</th>
-          <th>checkbox</th>
-        </tr>
-        {words.map((word, index) => (
-          <tr>
-            <td key={index + new Date().getTime()}> {value} </td>
-            <td key={index * new Date().getTime()}> {word} </td>
-            <td>
-              <input type="checkbox"></input>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-      <div className="divButton">
-        <button className={"postButton"} onClick={handlePost}>
-          post
-        </button>
+    <>
+      <div className="wordBox">
+        <form onSubmit={handleSubmit}>
+          <h2>Word Refresh</h2>
+          <input type="text" list="getWords"></input>
+          <datalist id="getWords">
+            <option value="verb" />
+            <option value="noun" />
+          </datalist>
+          <button onClick={fetchData}>Get </button>
+        </form>
+
+        <table>
+          <tbody>
+            <tr className="wordTable">
+              <th>word type</th>
+              <th>word</th>
+              <th>checkbox</th>
+            </tr>
+            {words.map((word, index) => (
+              <tr key={index}>
+                <td> {value} </td>
+                <td> {word} </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    onChange={handleCheckBox(word, value)}
+                  ></input>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="divButton">
+          <button className={"postButton"} onClick={handlePost}>
+            post
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

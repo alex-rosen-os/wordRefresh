@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import express from "express";
+import express from "express"; 
 import { json } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -11,7 +11,7 @@ import authenticateToken from './middlewares/auth.js'
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 console.log("port :", PORT);
 
 
